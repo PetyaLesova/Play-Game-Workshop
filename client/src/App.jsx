@@ -1,12 +1,14 @@
+import Header from "./components/header/Header.jsx"
 
 
 function App() {
 
 
   return (
-    <>
-      <h1>Games Play</h1>
-    </>
+    <div id="box">
+     
+      <Header/>
+    </div>
   )
 }
 
