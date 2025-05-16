@@ -26,7 +26,7 @@ export default function GameList(){
                     <img src="./images/avatar-1.jpg"/>
                     <h6>Action</h6>
                     <h2>MineCraft</h2>
-                    <a href="#" class="details-button">Details</a>
+                    <a href="#" className="details-button">Details</a>
                 </div>
             </div>
 

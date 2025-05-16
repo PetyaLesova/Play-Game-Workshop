@@ -1,8 +1,8 @@
 export default function GameCreate(){
     return (
-        <section id="create-page" class="auth">
+        <section id="create-page" className="auth">
             <form id="create">
-                <div class="container">
+                <div className="container">
 
                     <h1>Create Game</h1>
                     <label htmlfor="leg-title">Legendary title:</label>
@@ -19,7 +19,7 @@ export default function GameCreate(){
 
                     <label htmlfor="summary">Summary:</label>
                     <textarea name="summary" id="summary"></textarea>
-                    <input class="btn submit" type="submit" value="Create Game"/>
+                    <input className="btn submit" type="submit" value="Create Game"/>
                 </div>
             </form>
         </section>
