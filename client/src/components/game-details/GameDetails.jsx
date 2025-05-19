@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import * as gameService from "../../services/gameService.js"
+import {create} from "../../services/commentService.js"
 
 export default function GameDetails(){
     const[game,setGame] = useState({})
@@ -10,6 +11,19 @@ export default function GameDetails(){
         gameService.getOne(gameId)
          .then(setGame)
     }, [gameId])
+
+    const addCommentHandler = async(e)=>{
+        e.preventDefault()
+        const formData = new FormData(e.currentTarget)
+
+        const newComment = await create(
+            gameId,
+            formData.get('username'),
+            formData.get('comment')
+        );
+        console.log(newComment);
+        
+    }
 
     return (
         <section id="game-details">
@@ -26,7 +40,7 @@ export default function GameDetails(){
             <p className="text"> {game.summary}</p>
 
             // Bonus ( for Guests and Users ) 
-            {/* <div className="details-comments">
+            <div className="details-comments">
                 <h2>Comments:</h2>
                 <ul>
                     // //  list all comments for current game (If any) 
@@ -39,7 +53,7 @@ export default function GameDetails(){
                 </ul>
                 // Display paragraph: If there are no games in the database
                 <p className="no-comment">No comments.</p>
-            </div> */}
+            </div>
 
             // //  Edit/Delete buttons ( Only for creator of this game ) 
             <div className="buttons">
@@ -50,13 +64,14 @@ export default function GameDetails(){
 
         // Bonus 
         //  Add Comment ( Only for logged-in users, which is not creators of the current game ) 
-        {/* <article className="create-comment">
+        <article className="create-comment">
             <label>Add new comment:</label>
-            <form className="form">
+            <form className="form" onSubmit={addCommentHandler}>
+                <input type="text" name="username" placeholder="username" />
                 <textarea name="comment" placeholder="Comment......"></textarea>
                 <input className="btn submit" type="submit" value="Add Comment"/>
             </form>
-        </article> */}
+        </article>
 
     </section>
     )
