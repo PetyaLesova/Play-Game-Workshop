@@ -7,19 +7,25 @@ export const getAll = async()=>{
     // const result = await response.json()
     // return result
     const result = await request('GET', baseUrl)
-   // console.log(Object.values(result));
     return Object.values(result)
     
 }
 
+export const getOne = async (gameId) =>{
+    const result = await request('GET', (`${baseUrl}/${gameId}`))
+    return result
+}
+
 export const create = async (gameData) => {
-    const response = await fetch(baseUrl,{
-        method: 'POST',
-        headers: {
-            'Content-type':'Application/json'
-        },
-        body: JSON.stringify(gameData)
-    })
-    const result = await response.json()
+    const result = await request('POST', baseUrl, gameData)
+
+    // const response = await fetch(baseUrl,{
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-type':'Application/json'
+    //     },
+    //     body: JSON.stringify(gameData)
+    // })
+    // const result = await response.json()
     return result
 }
