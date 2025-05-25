@@ -1,13 +1,22 @@
+import { useContext } from "react"
 import useForm from "../../hooks/useForm.jsx"
+import AuthContext from "../../contexts/authContexts.js"
+
+const LoginFormKeys = {
+    Email: 'email',
+    Password: 'password'
+}
 
 export default function Login (){
-    const{values, onChange, onSubmit} =   useForm({
-        email:'',
-        password:''
+    const{loginSubmitHandler} = useContext(AuthContext)
+
+    const{values, onChange, onSubmit} =   useForm(loginSubmitHandler,{ 
+        [LoginFormKeys.Email]:'',
+        [LoginFormKeys.Password]:''
     })
     return(
         <section id="login-page" className="auth">
-            <form id="login">
+            <form id="login" onSubmit={onSubmit}>
 
                 <div className="container">
                     <div className="brand-logo"></div>
@@ -16,7 +25,7 @@ export default function Login (){
                     <input 
                         type="email" 
                         id="email" 
-                        name="email" 
+                        name={LoginFormKeys.Email} 
                         placeholder="Sokka@gmail.com"
                         onChange = {onChange}
                         value={values['email']}
@@ -26,9 +35,9 @@ export default function Login (){
                     <input 
                         type="password" 
                         id="login-password" 
-                        name="password"
+                        name={LoginFormKeys.Password}
                         onChange = {onChange}
-                        value={values.password}
+                        value={values[LoginFormKeys.Password]}
                         />
                     <input type="submit" className="btn submit" value="Login"/>
                     <p className="field">
